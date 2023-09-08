@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import datetime
 
-def get_info(request):
+def api(request):
     # Get query parameters
     slack_name = request.GET.get('slack_name')
     track = request.GET.get('track')
