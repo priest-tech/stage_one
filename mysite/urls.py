@@ -17,7 +17,16 @@ Including another URLconf
 
 
 from django.contrib import admin
+from django.conf import settings
 from django.urls import path, include
+
+if not settings.DEBUG:
+    # Set APPEND_SLASH to False for non-debug mode
+    from django.urls import register_converter
+    from django.urls.converters import SlugConverter
+    register_converter(SlugConverter, 'slug')
+    APPEND_SLASH = False
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
