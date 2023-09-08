@@ -19,8 +19,8 @@ def api(request):
         return JsonResponse({"error": "Invalid UTC time"}, status=400)
 
     # Construct GitHub URLs
-    github_file_url = "https://github.com/priest-tech/Zuri/blob/stage_one/myproject/myapp/views.py"
-    github_repo_url = "https://github.com/priest-tech/Zuri"
+    github_file_url = "https://github.com/priest-tech/stage_one/blob/main/kush/views.py"
+    github_repo_url = "https://github.com/priest-tech/stage_one"
 
     # Create JSON response
     response_data = {
