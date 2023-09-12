@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Person</title>
+</head>
+<body>
+    <form id="createPersonForm" action="{% url 'create_person_form' %}" method="post">
+        {% csrf_token %}
+        Name: <input type="text" name="name" required><br>
+        Email: <input type="email" name="email" required><br>
+        Age: <input type="number" name="age" required><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById('createPersonForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+
+            fetch('http://127.0.0.1:8000/create', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
